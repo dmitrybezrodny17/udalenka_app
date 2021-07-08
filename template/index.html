@@ -135,7 +135,6 @@
 			<div id="tag_list" class="tag_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
 			</div>
 			<p id="fav_label" style="margin: 0px; font-size:14px; font-family:'Mont';">Избранное:</p>
-			<!--<p id="empty_favs" style="visibility: hidden; margin:0; margin-left: 5px;">Здесь пока ничего нет, нажмите на звездочку в нужной категории чтобы добавить её в список</p>-->
 			<div id="fav_list" class="fav_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
 			</div>
     	</div>
@@ -180,7 +179,6 @@
 					e.textContent = '★';
 	        	    document.querySelector('#fav_label').style = "margin:5px 0px 0px 5px; font-size:14px; font-family:'Mont'";
 		            document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 10px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
-	        	    //document.querySelector('#empty_favs').style = "visibility: hidden"
 					list.push(category);
 					console.log(list)
 					var fav_template = document.querySelector('#fav_template');
@@ -194,7 +192,6 @@
 					list.splice(index, 1);
 					console.log(list)
 					e.textContent = '☆';
-	        	    // document.querySelector('#empty_favs').style = "visibility: visible; margin:0; margin-left:5px"
 					var created_favs = document.getElementsByClassName("fav");
 					for (var i = 0; i < created_favs.length; i++) {
 						if (created_favs[i].textContent == category) {
@@ -369,7 +366,7 @@
 		}
 	</script>
 
-	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="/static/totop.png" width="50" height="50" alt="submit"></button>
+	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="{{ url_for('static', filename='top.png') }}" width="50" height="50" alt="submit"></button>
 
 	<script>
 	mybutton = document.getElementById("myBtn");
