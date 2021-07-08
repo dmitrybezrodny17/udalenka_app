@@ -1,0 +1,319 @@
+.loader {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #1A72F8; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 3s linear infinite;
+  margin-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#myBtn {
+  display: none; 
+  position: fixed;
+  bottom: 20px;
+  right: 20px; 
+}
+
+#myBtn:hover {
+  background-color: #D1D1D1; /* Add a dark-grey background on hover */
+}
+
+a {
+    color: inherit;
+}
+
+.switch {
+-webkit-tap-highlight-color: transparent
+}
+
+.accordion {
+  background-color: white;
+  color: #444;
+  cursor: pointer;
+  padding: 12px;
+  position: relative;
+  max-width: 800px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: 100%;
+  border: none;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  outline: none;
+  font-size: 14px;
+  transition: 0.5s;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+
+
+.active, .panel:active {
+  background-color: #F0E68C;
+}
+
+.accordion:after {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+
+.panel {
+  padding: 0 0;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  max-width: 800px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: 0.5s;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  padding-left: 10px;
+}
+
+img {
+	vertical-align:middle;
+}
+
+@font-face {
+  font-family: Mont;
+  src: url(Mont-Regular.ttf);
+}
+
+@font-face {
+  font-family: MontBold;
+  src: url(Mont-Bold.ttf);
+}
+body {
+    font-family: Mont;
+}
+.header_title {
+    display: flex;
+    align-items: center;
+    font-family: MontBold;
+    font-size: 18px;
+    color: #fff;
+}
+.header_title_logo {
+    width: 38px;
+    margin-right: 12px;
+}
+header { 
+    background: #1A72F8;
+}
+.header_overlay {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 800px;
+    margin: auto;
+}
+.accordion_head {
+    display: flex;
+    align-items: flex-end;
+}
+.accordion_head_date {
+    display: block;
+    margin-left: auto;
+    font-family: Mont;
+    width: 100px;
+    text-align: left;
+}
+.accordion_head_logo {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}
+.accordion_head_info_position {
+    display: block;
+    font-family: MontBold;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+.accordion_head_info_company {
+    display: block;
+    font-family: Mont;
+}
+.accordion_head_info {
+    margin-left: 10px;
+    width: calc(100% - 150px);
+}
+.accordion_overlay {
+    margin-top: 20px;
+}
+.accordion {
+    margin-top: 10px;
+}
+.panel ol,.panel ul {
+    padding-left: 25px;
+    font-family: Mont;
+    margin: 0;
+}
+.panel p {
+    font-family: Mont;
+    margin: 10px 0;
+}
+.panel_overlay {
+    margin-top: 14px;
+    display: block;
+}
+.panel li {
+    line-height: 140%;
+}
+.button {
+    display: block;
+    color: #F2F2F2;
+    font-size: 14px;
+    font-family: Mont;
+    background: #1A72F8;
+    text-align: center;
+    border-radius: 5px;
+    width: 224px;
+    text-decoration: none;
+    padding: 15px 0;
+    margin-top: 14px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+.pagination a {
+    text-decoration: none;
+    margin: 0 9px;
+    
+}
+.pagination a.active {
+    background: #1A72F8;
+    border-radius: 3px;
+    color: #fff;
+    padding: 4px 11px;
+}
+.tag_list a.active_tags {
+    background: #1A72F8;
+    border-radius: 3px;
+    color: #fff;
+    padding: 4px 11px;
+}
+.accordion.active .accordion_head_info_position{
+    /*text-decoration: underline;*/
+}
+.accordion.favorite {
+    background: #1A72F8!important;
+    color: #fff;
+}
+.select2-container {
+    width: 250px!important;
+}
+.accordion.favorite .panel {
+    background-color: transparent!important;
+}
+.accordion.favorite .button{
+    color: #444;
+    background-color: #fff;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px;
+    font-size: 14px;
+    padding-left: 14px;
+}
+.select2-container .select2-selection--single {
+    height: 38px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px;
+    width: 30px;
+}
+
+.select2-results__option {
+    font-size: 14px;
+}
+@media screen and (max-width: 830px) {
+    .header_overlay {
+        margin: 0 20px;
+        width: calc(100% - 40px);
+    }
+    .accordion {
+        margin-right: 20px;
+        margin-left: 20px;
+        width: calc(100% - 40px);
+    }
+}
+@media screen and (max-width: 470px) {
+    .header_overlay {
+        flex-direction: column;
+    }
+    header {
+        padding-bottom: 16px;
+    }
+    .select2-container .select2-selection--single {
+        height: 42px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 42px;
+    }
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 42px;
+        width: 40px;
+    }
+    .accordion {
+        border: none;
+        border-top: 1px solid #D1D1D1;
+        border-radius: 0;
+        margin-top: 0;
+        padding:11px 0;
+    }
+    .accordion:last-child {
+        border-bottom: 1px solid #D1D1D1;
+    }
+    .accordion_head_date {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .accordion_head {
+        position: relative;
+        align-items: flex-start;
+    }
+    .accordion_head_info {
+        width: calc(100% - 50px);
+    }
+    .accordion.favorite {
+        padding: 11px 20px;
+        width: 100%;
+        margin-left: 0px;
+    }
+    .header_form {
+        width: 100%;
+    }
+    .select2-container {
+        width: 100%!important;
+    }
+    .accordion_head_info_company {
+        max-width: 150px;
+    }
+}
