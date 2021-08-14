@@ -1,10 +1,7 @@
-from modules.scrapers import djinni, rabota, work, grc
+from modules.scrapers import djinni, rabota, work, grc, dou
 
 def main():
-	djinni.get_urls()
-	rabota.get_urls()
-	grc.get_urls()
-	work.get_urls()
+	dou.get_urls()
 
 if __name__ == '__main__':
 	main()

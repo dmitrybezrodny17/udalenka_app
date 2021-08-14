@@ -27,6 +27,6 @@ def get_last_id():
 
 def add_job(url, title, company, salary, description_text, img_src, exp_final, job_id):
 	new_job = Jobs(url=url, title=title, company=company, salary=salary, description=description_text, img=img_src, id=job_id, exp=exp_final)
-	print(url, title, exp_final, salary, job_id)
+	print(url, title, exp_final)
 	s.add(new_job)
 	#s.commit() 
