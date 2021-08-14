@@ -93,7 +93,7 @@
     		</div>
     	</div>
     	<div class="panel">
-    		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Опыт работы:</p>
+    		<p class="filter_name">Опыт работы:</p>
     		<div class="pagination" style="">
     			<a id="exp_button" onclick="set_experience(this)" value="69">Все</a>
     			<a id="exp_button" onclick="set_experience(this)" value="1">1 год</a>
@@ -102,25 +102,24 @@
     			<a id="exp_button" onclick="set_experience(this)" value="4">4 года</a>
     			<a id="exp_button" onclick="set_experience(this)" value="10">5 лет и больше</a>
     		</div>
-    		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Источники:</p>
+    		<p class="filter_name">Источники:</p>
     		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
-    			<a id="source" class="source" onclick="source(this)" value="djinni" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">djinni</a>
-    			<a id="source" class="source" onclick="source(this)" value="work" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">work</a>
-    			<a id="source" class="source" onclick="source(this)" value="rabota" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">rabota</a>
-    			<a id="source" class="source" onclick="source(this)" value="dou" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">dou</a>
-    			<a id="source" class="source" onclick="source(this)" value="grc" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">grc</a>
-    			<a id="source" class="source" onclick="source(this)" value="jooble" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">jooble</a>
-    			<a id="source" class="source" onclick="source(this)" value="trud" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">trud</a>
-    			<a id="source" class="source" onclick="source(this)" value="freelancehunt" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">freelancehunt</a>
+    			<a id="source" onclick="source(this)" value="djinni">djinni</a>
+    			<a id="source" onclick="source(this)" value="work">work</a>
+    			<a id="source" onclick="source(this)" value="rabota">rabota</a>
+    			<a id="source" onclick="source(this)" value="dou">dou</a>
+    			<a id="source" onclick="source(this)" value="grc">grc</a>
+    			<a id="source" onclick="source(this)" value="jooble">jooble</a>
+    			<a id="source" onclick="source(this)" value="trud">trud</a>
+    			<a id="source" onclick="source(this)" value="freelancehunt">freelancehunt</a>
     		</div>
-			<p id="tag_label" style="margin: 0px; font-size:14px; font-family:'Mont';">Теги:</p>
+			<p id="tag_label" class="filter_name">Теги:</p>
 			<div id="tag_list" class="tag_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
 			</div>
-			<p id="fav_label" style="margin: 0px; font-size:14px; font-family:'Mont';">Избранное:</p>
-			<!--<p id="empty_favs" style="visibility: hidden; margin:0; margin-left: 5px;">Здесь пока ничего нет, нажмите на звездочку в нужной категории чтобы добавить её в список</p>-->
+			<p id="fav_label" class="filter_name">Избранное:</p>
 			<div id="fav_list" class="fav_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
 			</div>
-			<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Зарплата:</p>
+			<p class="filter_name">Зарплата:</p>
 			<div style="margin-bottom:10px; margin-top:5px;">
 				<input type="number" id="salary" name="salary" class="salary" style="border:1px solid #D1D1D1; border-radius:5px; padding:5px;" pattern="[0-9]+" placeholder="в гривнах">
 				<a id="enter" class="enter" onclick="enter()" style="margin: 0 5px 5px 0; margin-left: 10px;border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none; padding-right:20px;padding-left:20px">Поиск</a><br>

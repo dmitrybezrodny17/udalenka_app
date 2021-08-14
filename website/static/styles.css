@@ -172,9 +172,8 @@ header {
     margin: 0;
 }
 .panel p {
-    font-family: Mont;
-    margin: 10px 0;
 }
+
 .panel_overlay {
     margin-top: 14px;
     display: block;
@@ -228,18 +227,34 @@ header {
     color: #fff;
     padding: 4px 11px;
 }
+
 .tag_list a.active_tags {
     background: #1A72F8;
     border-radius: 3px;
     color: #fff;
     padding: 4px 11px;
 }
+
 .pagination a.active_sources {
     background: #1A72F8;
     border-radius: 3px;
     color: #fff;
     padding: 4px 11px;
 }
+
+#source {
+	margin: 0 5px 5px 0; 
+	border: 1px solid #D1D1D1; 
+	border-radius: 5px; 
+	padding: 5px;
+}
+
+.filter_name {
+	margin: 5px 0px 0px 0px; 
+	font-size:14px; 
+	font-family:'Mont';
+}
+
 .accordion.active .accordion_head_info_position{
     /*text-decoration: underline;*/
 }

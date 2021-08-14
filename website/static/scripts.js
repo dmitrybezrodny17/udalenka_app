@@ -64,19 +64,22 @@ function tags(e) {
 	for (i in tags) {
 		list.push(tags[i]);
 	}
-
+				
 	if (tags != null){
 		if (!tags.includes(tag)){
+			e.classList.add('active_tags');
 			list.push(tag);
 		} else {
 			const index = list.indexOf(tag);
 			list.splice(index, 1);
+			e.classList.remove('active_tags');
 		}
-	
+					
 	} else {
 		list.push(tag);
+		e.classList.add('active_tags');
 	}
-
+				
 	localStorage.setItem('tags', JSON.stringify(list));
 };
 
