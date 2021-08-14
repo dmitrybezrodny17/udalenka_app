@@ -1,12 +1,51 @@
 $(function firstData() {
 	var currentCategory = window.location.href.split('/')[3];
+	var category_tags = [];
+	var filters = 0;
+	
+	// проверяем показываются ли вакансии без зп
+	if (JSON.parse(localStorage.getItem("nullzp")) !== null) {
+		nullzp = JSON.parse(localStorage.getItem("nullzp"));
+		if (nullzp == 1) {
+			document.getElementById("zp").checked = true;
+		} else {
+			document.getElementById("zp").checked = false;
+		}
+	} else {
+		nullzp = 1;
+		localStorage.setItem('nullzp', JSON.stringify(nullzp));
+	}
+	//
+	
+	// устанавливаем зарплату
+	if (JSON.parse(localStorage.getItem("salary")) !== null) {
+		salary = JSON.parse(localStorage.getItem("salary"))
+		document.querySelector('#salary').value = salary;		
+	} else {
+		salary = '0';
+	}
+	//
+	
+	// поиск по энтеру
+	$(".salary").on('keyup', function (e) {
+		if (e.key === 'Enter' || e.keyCode === 13) {
+			var salary = document.querySelector('#salary').value;
+			localStorage.setItem('salary', JSON.stringify(salary));
+			if (currentCategory !== 'anything') {
+		    	window.location = '/' + currentCategory;
+			} else {
+		    	window.location = 'https://udalenka.com.ua/';
+			}
+		}
+	});
+	//
 		
+	// парсим сохраненные теги
 	if (JSON.parse(localStorage.getItem("tags")) !== null) {
 		var selected_tags = JSON.parse(localStorage.getItem("tags"));			
 	} else {
 		var selected_tags = []
 	}
-	var category_tags = []
 	
 	var favorites = JSON.parse(localStorage.getItem("favorites"));
 	if (favorites === null || favorites === "" || favorites.length < 1) {
@@ -30,14 +69,18 @@ $(function firstData() {
 	        document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 5px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
 		}
 	}
+	
+	// выбор категории
 				// Developers
 	if (currentCategory == 'databases'){
 		$('#skilz option:contains(' + 'Databases' + ')').prop({selected: true}).change();
+		category_tags = ["BI", "Oracle", "DBA"];
 	} else if (currentCategory == 'network'){
 		$('#skilz option:contains(' + 'Network' + ')').prop({selected: true}).change();
-		category_tags = ["devops"];
+		category_tags = ["devops", "linux", "windows", "azure"];
 	} else if (currentCategory == 'it-sec'){
 		$('#skilz option:contains(' + 'IT Security' + ')').prop({selected: true}).change();
+		category_tags = ["pentest", "secops"];
 	} else if (currentCategory == 'qa-manual'){
 		$('#skilz option:contains(' + 'QA Manual' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'qa-automation'){
@@ -45,16 +88,20 @@ $(function firstData() {
 		category_tags = ["python","java","javascript"];
 	} else if (currentCategory == 'gamedev'){
 		$('#skilz option:contains(' + 'GameDev' + ')').prop({selected: true}).change();
+		category_tags = ["unity", "level", "casual"];
 	} else if (currentCategory == 'mobile-dev'){
 		$('#skilz option:contains(' + 'Mobile Development' + ')').prop({selected: true}).change();
+		category_tags = ["android", "ios", "xamarin", "flutter"];
 	} else if (currentCategory == 'full-stack'){
 		$('#skilz option:contains(' + 'Full Stack' + ')').prop({selected: true}).change();
+		category_tags = ["php", "java", "ruby", "javascript"];
 	} else if (currentCategory == 'net'){
 		$('#skilz option:contains(' + 'C#/.NET' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'python'){
 		$('#skilz option:contains(' + 'Python' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'front-end'){
 		$('#skilz option:contains(' + 'Front End' + ')').prop({selected: true}).change();
+		category_tags = ["javascript", "react", "angular", "typescript", "wordpress", "vue"];
 	} else if (currentCategory == 'java'){
 		$('#skilz option:contains(' + 'Java' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'kotlin'){
@@ -76,25 +123,33 @@ $(function firstData() {
 	} else if (currentCategory == 'crm'){
 		$('#skilz option:contains(' + 'CRM, ERP' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'blockchain'){
-		$('#skilz option:contains(' + 'Data Science' + ')').prop({selected: true}).change();
-	} else if (currentCategory == 'embedded'){
 		$('#skilz option:contains(' + 'Blockchain' + ')').prop({selected: true}).change();
-	} else if (currentCategory == 'data-science'){
+		category_tags = ["solidity", "smart"];
+	} else if (currentCategory == 'embedded'){
 		$('#skilz option:contains(' + 'Embedded' + ')').prop({selected: true}).change();
+		category_tags = ["firmware", "voip", "hardware"];
+	} else if (currentCategory == 'data-science'){
+		$('#skilz option:contains(' + 'Data Science' + ')').prop({selected: true}).change();
+		category_tags = ["big", "deep", "ai"];
 				// Management
 	} else if (currentCategory == 'project-management'){
 		$('#skilz option:contains(' + 'Project Management' + ')').prop({selected: true}).change();
+		category_tags = ["delivery", "engineering", "scrum"];
 	} else if (currentCategory == 'product-management'){
 		$('#skilz option:contains(' + 'Product Management' + ')').prop({selected: true}).change();
+		category_tags = ["r&d", "growth", "engineering"];
 	} else if (currentCategory == 'marketing-management'){
 		$('#skilz option:contains(' + 'Marketing Management' + ')').prop({selected: true}).change();
+		category_tags = ["affiliate", "google", "leads"];
 				// Design
 	} else if (currentCategory == 'web-design'){
 		$('#skilz option:contains(' + 'Web Design' + ')').prop({selected: true}).change();
+		category_tags = ["верстка", "css"];
 	} else if (currentCategory == 'ui-ux'){
 		$('#skilz option:contains(' + 'UI/UX' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'graphic-design'){
 		$('#skilz option:contains(' + 'Graphic Design' + ')').prop({selected: true}).change();
+		category_tags = ["2d", "character", "иллюстратор"];
 	} else if (currentCategory == '3d-design'){
 		$('#skilz option:contains(' + '3D Design' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'motion-design'){
@@ -102,21 +157,30 @@ $(function firstData() {
 				// Miscellaneous
 	} else if (currentCategory == 'hr'){
 		$('#skilz option:contains(' + 'HR' + ')').prop({selected: true}).change();
+		category_tags = ["recruiter", "скаут", "серчер", "staff"];
 	} else if (currentCategory == 'seo-e-mail'){
 		$('#skilz option:contains(' + 'SEO/E-mail' + ')').prop({selected: true}).change();
+		category_tags = ["aso", "link", "email"];
 	} else if (currentCategory == 'ads-lead'){
 		$('#skilz option:contains(' + 'Ads/Lead' + ')').prop({selected: true}).change();
+		category_tags = ["affiliate", "ppc", "google", "таргет", "арбитраж"];
 	} else if (currentCategory == 'smm'){
 		$('#skilz option:contains(' + 'SMM' + ')').prop({selected: true}).change();
+		category_tags = ["instagram", "директ", "media", "контент"];
 	} else if (currentCategory == 'it-sales'){
 		$('#skilz option:contains(' + 'IT-sales' + ')').prop({selected: true}).change();
+		category_tags = ["account", "sales"];
 	} else if (currentCategory == 'analyst'){
 		$('#skilz option:contains(' + 'Analyst' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'support'){
 		$('#skilz option:contains(' + 'Support' + ')').prop({selected: true}).change();
+		category_tags = ["customer", "helpdesk", "zendesk"];
 	} else if (currentCategory == 'copywriting'){
 		$('#skilz option:contains(' + 'Copywriting' + ')').prop({selected: true}).change();
 	} else if (currentCategory === ''){
+		$('#skilz option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
+		currentCategory = 'anything';
+	} else if (currentCategory.includes('fbclid')){
 		$('#skilz option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
 		currentCategory = 'anything';
 	} else if (currentCategory == 'favorite'){
@@ -131,6 +195,7 @@ $(function firstData() {
 	var template = document.querySelector('#post_template');
 	var page_num = 1;
 	
+	// загружаем избранное
 	var fav_template = document.querySelector('#fav_template');
 	var fav_list = document.querySelector("#fav_list");
 	if (favorites != null) {
@@ -142,6 +207,7 @@ $(function firstData() {
 		}		
 	} 
 	
+	// загружаем теги
 	var tag_template = document.querySelector('#tag_template');
 	var tag_list = document.querySelector("#tag_list");
 	if (category_tags.length > 0) {
@@ -149,8 +215,8 @@ $(function firstData() {
 			let tag_clone = tag_template.content.cloneNode(true);
 			if (selected_tags.includes(category_tags[i])) {
 				tag_clone.querySelector('#tag').setAttribute("class", "active_tags");
+	        	filters++;
 			}
-			tag_clone.querySelector('#tag').setAttribute("href", "/" + currentCategory);
 			tag_clone.querySelector('#tag').textContent = category_tags[i];
 			tag_list.appendChild(tag_clone);
 		}
@@ -158,15 +224,19 @@ $(function firstData() {
 		document.querySelector('#tag_label').style = "visibility:hidden; height:0; margin:0";
 		document.querySelector('#tag_list').style = "visibility:hidden; height:0; margin:0";
 	}
+	
 	var tag_elements = document.getElementsByClassName('active_tags');
 	var tag_list = ''
 	for (i = 0; i < tag_elements.length; i++) {
 		tag_list += tag_elements[i].innerText + ' ';
 	}
+	
+	// парсим опыт
+	if (JSON.parse(localStorage.getItem("exp")) !== null) {
 		var current_exp = JSON.parse(localStorage.getItem("exp"));
-	if (current_exp === null) {
-	    document.querySelectorAll('[id=page]')[0].classList.add('active');
-	} 
+	} else {
+		var current_exp = 69
+	}
 	    
 	document.querySelectorAll('[id=page]').forEach((element)=> {
 		if (parseInt(element.getAttribute('value')) === current_exp){
@@ -174,10 +244,40 @@ $(function firstData() {
 		}
 	});
 	
+	// парсим источники
+	if (JSON.parse(localStorage.getItem("source")) !== null) {
+		var sources = JSON.parse(localStorage.getItem("source"));
+	} else {
+		var sources = ["work","rabota","grc","dou","freelancehunt","trud","jooble","djinni"];
+		localStorage.setItem('source', JSON.stringify(sources));
+	}
+	
+	document.querySelectorAll('[id=source]').forEach((element)=> {
+		if (sources.includes(element.getAttribute('value'))){
+			element.classList.add('active_sources');
+		}
+	});
+	
+	// считаем фильтры
+	if (((salary  !== '0') && (salary.length > 0)) || (nullzp == 0)) {
+		filters++;
+	}
+	//if (selected_tags.length > 0) {
+//		filters++;
+//	}
+	if (current_exp !== 69) {
+		filters++;
+	}
+	if (filters > 0) {
+		document.querySelector('#filter_label').textContent = 'Фильтр (' + filters.toString() + ')▾';
+	}
+	// 
+		
 	var exp_num = document.getElementsByClassName('active')[0].getAttribute('value');
 	/*if (parseInt(current_exp) < 11) {
 	    document.querySelectorAll('[id=title]')[0].textContent = 'Фильтр (1)▾';
 	}*/
+		
 		
 	var intervalID = window.setInterval(CheckNews, 1000*60);
 
@@ -186,7 +286,10 @@ $(function firstData() {
 			skill: currentCategory,
 			page: 1,
 			exp: exp_num,
-		    tags: tag_list
+			tags: tag_list,
+			salary: salary,
+			nullzp: nullzp,
+			sources: sources.join(' ')
 		}, function(data) {
 			var new_posts = data.list_count;	
 			var old_posts = document.querySelector('#old_posts').getAttribute('value');
@@ -204,8 +307,23 @@ $(function firstData() {
 			skill: currentCategory,
 			page: page_num,
 			exp: exp_num,
-			tags: tag_list
+			tags: tag_list,
+			salary: salary,
+			nullzp: nullzp,
+			sources: sources.join(' ')
 	    }, function(data) {
+    		if (data.result.length == 0) {
+    		    document.querySelector('#loader').remove();
+    		    var btn = document.createElement("DIV"); 
+    		    if (document.getElementById("title")) {
+                  btn.innerHTML = "<br><br>Вакансий больше нет :(<br><br><br><br>"; 
+    		    } else {
+                  btn.innerHTML = "<br><br>По вашему запросу ничего не найдено :("; 
+    		    }
+                btn.style = "text-align:center;"
+                document.body.appendChild(btn);
+    		}
+    		console.log(data.list_count);
 	        document.querySelector('#loader').visibility = 'visible';
 		    document.querySelector('#old_posts').setAttribute("value", data.list_count);
 		    for (var i = 0; i < data.result.length; i++) {
@@ -216,9 +334,10 @@ $(function firstData() {
 	    			var viewed = JSON.parse(localStorage.getItem("viewed"));
 		    		if (viewed != null &&viewed.includes(data.result[i][8].toString())){
 			    		template_clone.querySelector("#title").textContent = data.result[i][1];
-			    		template_clone.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;";
-			    		template_clone.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;";
-			    		template_clone.querySelector("#date").style = "color: #D3D3D3";
+			    		template_clone.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+			    		template_clone.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+			    		template_clone.querySelector("#date").style = "color: #D3D3D3;width:120px;margin: 0px;line-height:16px;position:absolute;bottom:0;right:0;text-align:right;";
+			    		//template_clone.querySelector("#salary").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:170px;";
 			    	} else {
 			    		template_clone.querySelector("#title").textContent = data.result[i][1];
 			    	}
@@ -234,8 +353,26 @@ $(function firstData() {
 		    	        	template_clone.querySelector("#img").textContent = data.result[i][2].substring(0,1);
 	    		    	} 
 	    			} else {
-	    		    	template_clone.querySelector("#img").style = "background-image: url(" + data.result[i][7] + ")";
+	    		    	template_clone.querySelector("#img").style = "background-image: url(" + data.result[i][7] + ");border:1px solid rgb(209, 209, 209);";
 	    			}			
+	    			
+	    			if (parseInt(data.result[i][3]) > 0) {
+	    			    template_clone.querySelector("#salary").textContent = 'Платят: ₴' + data.result[i][3].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	    			} else {
+	    			    template_clone.querySelector("#salary").style = "display:none;"
+	    			}
+				
+	    			if ((parseInt(data.result[i][9]) > 0) && (data.result[i][9] !== null)) {
+	    			    if (parseInt(data.result[i][9]) >= 5) { 
+	    			        template_clone.querySelector("#exp").textContent = 'Требуемый опыт: ' + data.result[i][9] + ' лет';
+	    			    } else if ((parseInt(data.result[i][9]) <= 4) && (parseInt(data.result[i][9]) >= 2)) {
+	    			        template_clone.querySelector("#exp").textContent = 'Требуемый опыт: ' + data.result[i][9] + ' года';
+	    			    } else if (parseInt(data.result[i][9]) == 1) {
+	    			        template_clone.querySelector("#exp").textContent = 'Требуемый опыт: 1 год';
+	    			    }
+	    			} else {
+	    			    template_clone.querySelector("#exp").style = "display:none;"
+	    			}
 				
     				template_clone.querySelector("#description").innerHTML = data.result[i][4];
     				template_clone.querySelector("#url").setAttribute("onClick", "window.open('" + data.result[i][0] + "')");
@@ -272,8 +409,32 @@ $(function firstData() {
     			        }
     		    	}
     			    scroller.appendChild(template_clone);
+    			    if (data.result.length < 20) {
+            		    document.querySelector('#loader').remove();
+            		    var btn = document.createElement("DIV"); 
+            		    btn.innerHTML = "<br><br>Вакансий больше нет :(<br><br><br><br><br><br><br><br>";
+                        btn.style = "text-align:center;"
+                        document.body.appendChild(btn);
+    			    }
     			}
     		}
+        	if (JSON.parse(localStorage.getItem("isfilteropen")) !== null) {
+        	    var panel = document.getElementById("filters").parentNode.querySelector('.panel');	
+        	    if (parseInt(JSON.parse(localStorage.getItem("isfilteropen"))) == 1) {
+        	            panel.style.maxHeight = panel.scrollHeight + "px";
+        				panel.style.backgroundColor = "#fff";
+        				document.getElementById("filters").parentNode.style.backgroundColor = "#fff";
+        				document.getElementById("filters").parentNode.classList.add('active');
+        	    } else {
+        			panel.style.maxHeight = null;
+        			panel.style.backgroundColor = "white";
+        			document.getElementById("filters").parentNode.style.backgroundColor = "white";
+        			document.getElementById("filters").parentNode.classList.remove('active');
+        	    }
+        	} else {
+        	    //pass
+        	}
+        	
     	    document.querySelector('#loader').visibility = 'hidden';
     	    document.querySelector('#loader').style.marginTop = '20px';
     		page_num += 1;

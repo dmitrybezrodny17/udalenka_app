@@ -4,16 +4,12 @@
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
-	<script type=text/javascript src="{{ url_for('static', filename='select_category.js') }}"></script>
-	<link type=text/css href="{{ url_for('static', filename='accordion.css') }}" rel="stylesheet"/>
-	<link type=text/css href="{{ url_for('static', filename='menu.css') }}" rel="stylesheet"/>
-	<script type=text/javascript src="{{ url_for('static', filename='select2.js') }}"></script>
 	<script type=text/javascript src="{{ url_for('static', filename='scripts.js') }}"></script>
-	<link href="{{ url_for('static', filename='select2.min.css') }}" rel="stylesheet"/>
-	<script src="{{ url_for('static', filename='select2.min.js') }}"></script>
-	<script type=text/javascript src="{{ url_for('static', filename='first_data.js', v='15') }}"></script>
+	<link type=text/css href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
+	<script type=text/javascript src="{{ url_for('static', filename='first_data.js', v='16.74') }}"></script>
 	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 	<title>Удалёнка — Поиск удалённой работы</title>
+    <meta name="facebook-domain-verification" content="y4h3zi1u859tx2p31zzwcj07qssue2" />
   </head>
 
   <body style="margin:0;"  ontouchstart="" >
@@ -34,6 +30,7 @@
 				</ul>
 			  </div>
 			</nav>
+
 			
 			<form  class="header_form">
 				<select id="skilz" class="js-example-basic-multiple" name="skills" style="width:200px">
@@ -90,8 +87,8 @@
 		</div>
 	</header>
 	
-	<button onclick="acc(this)" class="accordion" style="top: 0; display: block; border: 0; padding-bottom: 2px; padding-top: 7px; margin-top:3px; margin-bottom:3px;">
-    	<div id="job_id" class="accordion_head">
+	<button class="accordion" style="top: 0; display: block; border: 0; padding-bottom: 2px; padding-top: 7px; margin-top:3px; margin-bottom:3px;">
+    	<div id="filters" class="accordion_head" onclick="filters(this)">
     		<div class="accordion_head_info" style="width:100%">
     			<span id="filter_label" class="accordion_head_info_position" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family:'MontBold'; display:inline;">Фильтр▾</span>
 				<a id="favorite" class="favorite" onclick="favorite(this)" style="float:right; font-size:30px; line-height:20px">☆</a>
@@ -100,22 +97,194 @@
     	<div class="panel">
     		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Опыт работы:</p>
     		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
-    			<a id="page" onclick="set_experience(this)" value="69" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">Все</a>
-    			<a id="page" onclick="set_experience(this)" value="1" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">1 год</a>
-    			<a id="page" onclick="set_experience(this)" value="2" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">2 года</a>
-    			<a id="page" onclick="set_experience(this)" value="3" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">3 года</a>
-    			<a id="page" onclick="set_experience(this)" value="4" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">4 года</a>
-    			<a id="page" onclick="set_experience(this)" value="10" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">5 лет и больше</a>
+    			<a id="page" class="page" onclick="expir(this)" value="69" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">Все</a>
+    			<a id="page" class="page" onclick="expir(this)" value="1" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">1 год</a>
+    			<a id="page" class="page" onclick="expir(this)" value="2" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">2 года</a>
+    			<a id="page" class="page" onclick="expir(this)" value="3" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">3 года</a>
+    			<a id="page" class="page" onclick="expir(this)" value="4" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">4 года</a>
+    			<a id="page" class="page" onclick="expir(this)" value="10" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">5 лет и больше</a>
+    		</div>
+    		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Источники:</p>
+    		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
+    			<a id="source" class="source" onclick="source(this)" value="djinni" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">djinni</a>
+    			<a id="source" class="source" onclick="source(this)" value="work" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">work</a>
+    			<a id="source" class="source" onclick="source(this)" value="rabota" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">rabota</a>
+    			<a id="source" class="source" onclick="source(this)" value="dou" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">dou</a>
+    			<a id="source" class="source" onclick="source(this)" value="grc" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">grc</a>
+    			<a id="source" class="source" onclick="source(this)" value="jooble" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">jooble</a>
+    			<a id="source" class="source" onclick="source(this)" value="trud" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">trud</a>
+    			<a id="source" class="source" onclick="source(this)" value="freelancehunt" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">freelancehunt</a>
     		</div>
 			<p id="tag_label" style="margin: 0px; font-size:14px; font-family:'Mont';">Теги:</p>
 			<div id="tag_list" class="tag_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
 			</div>
 			<p id="fav_label" style="margin: 0px; font-size:14px; font-family:'Mont';">Избранное:</p>
+			<!--<p id="empty_favs" style="visibility: hidden; margin:0; margin-left: 5px;">Здесь пока ничего нет, нажмите на звездочку в нужной категории чтобы добавить её в список</p>-->
 			<div id="fav_list" class="fav_list" style="display:flex; align-items:center; margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
+			</div>
+			<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Зарплата:</p>
+			<div style="margin-bottom:10px; margin-top:5px;">
+				<input type="number" id="salary" name="salary" class="salary" style="border:1px solid #D1D1D1; border-radius:5px; padding:5px;" pattern="[0-9]+" placeholder="в гривнах">
+				<a id="enter" class="enter" onclick="enter()" style="margin: 0 5px 5px 0; margin-left: 10px;border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none; padding-right:20px;padding-left:20px">Поиск</a><br>
+			</div>
+			<div style="display:flex;align-items:center;margin-top:10px;">
+				<input type="checkbox" id="zp" name="zp" class="zp" checked onclick="zp()">
+				<label for="zp" class="zp" style="margin-left:5px; margin-bottom:5px">Показывать без З/П</label>
 			</div>
     	</div>
 	</button>
-		
+	
+	<script>
+		function enter() {
+			var category = window.location.href.split('/')[3].split('#')[0];
+			var salary = document.querySelector('#salary').value;
+			localStorage.setItem('salary', JSON.stringify(salary));
+			window.location = '/' + category;
+		}
+	</script>	
+	
+	<script>
+		function zp() {
+			if (document.getElementById('zp').checked) {
+				nullzp = 1;
+				document.getElementById("zp").checked = true;
+			} else {
+				nullzp = 0;
+				document.getElementById("zp").checked = false;
+			}
+			localStorage.setItem('nullzp', JSON.stringify(nullzp));
+		}
+	</script>
+	
+	<script>
+		function tags(e) {
+			var tag = e.innerText;
+			var list = [];
+			var tags = JSON.parse(localStorage.getItem("tags"));
+			for (i in tags) {
+				list.push(tags[i]);
+			}
+				
+			if (tags != null){
+				if (!tags.includes(tag)){
+					e.classList.add('active_tags');
+					list.push(tag);
+				} else {
+					const index = list.indexOf(tag);
+					list.splice(index, 1);
+					e.classList.remove('active_tags');
+				}
+							
+				} else {
+					list.push(tag);
+					e.classList.add('active_tags');
+				}
+						
+				localStorage.setItem('tags', JSON.stringify(list));
+		}
+	</script>	
+	
+	<script>
+		function favorite(e) {
+			var category = window.location.href.split('/')[3].split('#')[0];
+			var list = []
+			var favorites = JSON.parse(localStorage.getItem("favorites"));
+			for (i in favorites) {
+				list.push(favorites[i]);
+			}
+				
+			if (favorites != null){
+				if (!favorites.includes(category)){
+					e.textContent = '★';
+	        	    document.querySelector('#fav_label').style = "margin:5px 0px 0px 5px; font-size:14px; font-family:'Mont'";
+		            document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 10px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
+	        	    //document.querySelector('#empty_favs').style = "visibility: hidden"
+					list.push(category);
+					console.log(list)
+					var fav_template = document.querySelector('#fav_template');
+					var fav_list = document.querySelector("#fav_list");
+					let fav_clone = fav_template.content.cloneNode(true);
+					fav_clone.querySelector('#fav').setAttribute("href", "/" + category);
+					fav_clone.querySelector('#fav').textContent = category;
+					fav_list.appendChild(fav_clone);
+				} else {
+					const index = list.indexOf(category);
+					list.splice(index, 1);
+					console.log(list)
+					e.textContent = '☆';
+	        	    // document.querySelector('#empty_favs').style = "visibility: visible; margin:0; margin-left:5px"
+					var created_favs = document.getElementsByClassName("fav");
+					for (var i = 0; i < created_favs.length; i++) {
+						if (created_favs[i].textContent == category) {
+							created_favs[i].remove();
+						}
+					}
+					console.log(list.length);
+					if (list.length == 0) {
+		                document.querySelector('#fav_label').style = "visibility: hidden; margin:0; height:0;";
+		                document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:0; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
+					}
+				}
+							
+				} else {
+					e.textContent = '★';
+	        	    document.querySelector('#fav_label').style = "margin:5px 0px 0px 5px; font-size:14px; font-family:'Mont'";
+		            document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 10px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
+					list.push(category);
+					console.log(list)
+					var fav_template = document.querySelector('#fav_template');
+					var fav_list = document.querySelector("#fav_list");
+					let fav_clone = fav_template.content.cloneNode(true);
+					fav_clone.querySelector('#fav').setAttribute("href", "/" + category);
+					fav_clone.querySelector('#fav').textContent = category;
+					fav_list.appendChild(fav_clone);
+				}
+						
+				localStorage.setItem('favorites', JSON.stringify(list));
+		}
+	</script>	
+			
+	<script>
+		function source(e) {
+			var website = e.innerText;
+			var list = [];
+			var source_list = JSON.parse(localStorage.getItem("source"));
+			for (i in source_list) {
+				list.push(source_list[i]);
+			}
+				
+			if (source_list != null){
+				if (!source_list.includes(website)){
+					e.classList.add('active_sources');
+					list.push(website);
+				} else {
+					const index = list.indexOf(website);
+					list.splice(index, 1);
+					e.classList.remove('active_sources');
+				}
+							
+				} else {
+					list.push(website);
+					e.classList.add('active_sources');
+				}
+						
+				localStorage.setItem('source', JSON.stringify(list));
+		}
+	</script>	
+			
+	<script>
+		function expir(e) {
+			if (!$(event.target).hasClass('button')){
+				document.querySelectorAll('[id=page]').forEach((element)=> {
+					element.classList.remove('active');
+				});
+				var current_exp = JSON.parse(localStorage.getItem("exp"));
+				e.classList.add('active');
+				localStorage.setItem('exp', e.getAttribute('value'));
+			}
+		}
+	</script>
+	
 	<button id="news" class="accordion" style="top: 0; display: block;">
 		<div id="job_id" class="accordion_head" style="justify-content: center">
 			<p id="new_posts" style="font-family: 'MontBold';"></p><p value="14" id="old_posts"></p>
@@ -132,16 +301,20 @@
 	<div id="scroller">
 	<template id="post_template">
 			<button onclick="accordion(this)" class="accordion" style="top: 0; display: block;">
-				<div id="job_id" class="accordion_head">
-					<div id="img" class="accordion_head_logo" style=""></div>
+				<div id="job_id" class="accordion_head" style="position:relative;align-items:center;">
+					<div id="img" class="accordion_head_logo" style="border:1px solid rgb(209, 209, 209)"></div>
 					<div class="accordion_head_info">
-						<span id="title" class="accordion_head_info_position" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"></span>
-						<span id="company" class="accordion_head_info_company"  style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"></span>
+						<span id="title" class="accordion_head_info_position" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;"></span>
+						<span id="company" class="accordion_head_info_company"  style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;"></span>
 					</div>
-					<span id="date" class="accordion_head_date" style="width:150px;text-align:right;"></span>
+					<span id="date" class="accordion_head_date" style="width:120px;text-align:right;position:absolute;right:0;bottom:0;line-height:16px;"></span>
 				</div>
 				<div class="panel">
-					<span id="description" class="panel_overlay" ></span>
+				    <div style="margin-top:14px;">
+					<span id="salary" class="accordion_head_info_company" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:100%"></span>
+					<span id="exp" class="accordion_head_info_company" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:100%;"></span>
+					</div>
+					<span id="description" class="panel_overlay" style="margin-top:0;" ></span>
 					<a id="url" onClick="" class="button">Посмотреть вакансию полностью</a>
 					<a id="rabota.ua" onClick="" class="button" style="visibility: hidden; height:0; margin:0; padding:0;"></a>
 					<a id="work.ua" onClick="" class="button" style="visibility: hidden; height:0; margin:0; padding:0;"></a>
@@ -161,17 +334,133 @@
 	</section>
 	
 	<template id="fav_template">
-		<a id="fav" class="fav" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none;">template</a>
+		<a id="fav" class="fav" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none;"></a>
 	</template>
 	
 	<template id="tag_template">
-		<a id="tag" class="tag" onclick="tags(this)" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none;">template</a>
+		<a id="tag" class="tag" onclick="tags(this)" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px; text-decoration:none;"></a>
 	</template>
 
 	<div id="sentinel" style="height:10px"></div>
 	<div class="loader" id="loader"></div>
-	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="{{ url_for('static', filename='top.png') }}" width="50" height="50" alt="submit"></button>
 
+	<script>
+	 function filters(e) {
+				var panel = e.parentNode.querySelector('.panel');
+				if (panel.style.maxHeight) {
+				  panel.style.maxHeight = null;
+				  panel.style.backgroundColor = "white";
+				  e.parentNode.style.backgroundColor = "white";
+				  e.parentNode.classList.remove('active');
+				  localStorage.setItem('isfilteropen', 0)
+				} else {
+				  panel.style.maxHeight = panel.scrollHeight + "px";
+				  panel.style.backgroundColor = "#fff";
+				  e.parentNode.style.backgroundColor = "#fff";
+				  e.parentNode.classList.add('active');
+				  localStorage.setItem('isfilteropen', 1)
+				} 
+		  }
+	</script>
+	
+	<script>
+	 function acc(e) {
+			var panel = e.querySelector('.panel');
+				if (panel.style.maxHeight) {
+				  panel.style.maxHeight = null;
+				  panel.style.backgroundColor = "white";
+				  e.style.backgroundColor = "white";
+				  e.classList.remove('active');
+				} else {
+				  panel.style.maxHeight = panel.scrollHeight + "px";
+				  panel.style.backgroundColor = "#fff";
+				  e.style.backgroundColor = "#fff";
+				  e.classList.add('active');
+			} 
+		}
+	</script>
+
+	<script>
+	 function accordion(e) {
+			if (!$(event.target).hasClass('button') && !$(event.target).hasClass('favorite')){
+			
+				var post = $(e.querySelector('.accordion_head'));
+				var job_id = post.attr('id');
+				var list = []
+				var viewed = JSON.parse(localStorage.getItem("viewed"));
+				for (i in viewed) {
+						list.push(viewed[i]);
+					}
+				
+				if (viewed != null){
+					if (!viewed.includes(job_id)){
+						e.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+						e.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+						e.querySelector("#date").style = "color: #D3D3D3;margin: 0px;line-height:16px;position:absolute;bottom:0;right:0;text-align:right;";
+					    //e.querySelector("#salary").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:170px;";
+						list.push(job_id);
+					}
+				} else {
+					e.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+					e.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
+					e.querySelector("#date").style = "color: #D3D3D3;margin: 0px;line-height:16px;position:absolute;bottom:0;right:0;text-align:right;";
+					//e.querySelector("#salary").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:170px;";
+					list.push(job_id);
+				}
+				
+				localStorage.setItem('viewed', JSON.stringify(list));
+				var localValue = localStorage.getItem('viewed');
+				
+				var panel = e.querySelector('.panel');
+				if (panel.style.maxHeight) {
+				  panel.style.maxHeight = null;
+				  panel.style.backgroundColor = "white";
+				  e.style.backgroundColor = "white";
+				 /* e.scrollIntoView({behavior: 'smooth'});*/
+				  if (e.getBoundingClientRect().top < 0) {
+					window.scroll({top: findPos(e), behavior: 'smooth'});
+					function findPos(obj) {
+						var curtop = 0;
+						if (obj.offsetParent) {
+							do {
+								curtop += obj.offsetTop;
+							} while (obj = obj.offsetParent);
+						return [curtop];
+						}
+					}
+				  }
+				} else {
+    				panel.style.maxHeight = panel.scrollHeight + "px";
+    				panel.style.backgroundColor = "#fff";
+    				e.style.backgroundColor = "#fff";
+    			    e.classList.add('active');
+			} 
+		  }
+		}
+	</script>
+
+	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="/static/top.png" width="50" height="50" alt="submit"></button>
+
+	<script>
+	mybutton = document.getElementById("myBtn");
+	myimage = document.getElementById("myImg");
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		mybutton.style.display = "block";
+		myimage.style.display = "block";
+	  } else {
+		mybutton.style.display = "none";
+		myimage.style.display = "none";
+	  }
+	}
+
+	function topFunction() {
+	  document.body.scrollTop = 0;
+	  document.documentElement.scrollTop = 0;
+	}
+	</script>
 
   </body>
 </html>
