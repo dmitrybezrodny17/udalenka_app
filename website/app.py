@@ -2,11 +2,12 @@ import psycopg2
 from flask import Flask, render_template, request, jsonify, Markup
 import re
 import math
+import config as c
 from modules.categorization import *
 
 app = Flask(__name__, template_folder='template')
 
-def search(search_terms, exp_in, tag_list, sort_by):
+def search(search_terms, exp_in, tag_list, salary_in, nullzp, sources, sort_by):
 	conn = psycopg2.connect(dbname=c.DBNAME, user=c.USER, 
 					   password=c.PASSWORD, host=c.HOST)
 	cur = conn.cursor()
@@ -30,7 +31,7 @@ def search(search_terms, exp_in, tag_list, sort_by):
 		if links == '' or links == ' ' or links is None:
 			links = url
 		tl = title.lower()
-				for term in search_terms.split(' '):
+		for term in search_terms.split(' '):
 			match = detect_category(term, title)
 		job = (url, title, company, salary, description, date, match, img, job_id, exp, links)
 		if exp is None:
