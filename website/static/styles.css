@@ -104,6 +104,7 @@ img {
 }
 body {
     font-family: Mont;
+	margin:0;
 }
 .header_title {
     display: flex;
@@ -199,14 +200,28 @@ header {
 .pagination {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin: 20px 0;
+    /*justify-content: center;
+    margin: 20px 0;*/
+	
+	margin: 5px 10px 5px 0px; 
+	justify-content: left; 
+	font-size:14px; 
+	font-family:'Mont'; 
+	flex-wrap: wrap;
 }
 .pagination a {
     text-decoration: none;
     margin: 0 9px;
     
 }
+
+#exp_button {
+	margin: 0 5px 5px 0; 
+	border: 1px solid #D1D1D1; 
+	border-radius: 5px; 
+	padding: 5px;
+}
+
 .pagination a.active {
     background: #1A72F8;
     border-radius: 3px;

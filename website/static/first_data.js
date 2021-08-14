@@ -73,118 +73,118 @@ $(function firstData() {
 	// выбор категории
 				// Developers
 	if (currentCategory == 'databases'){
-		$('#skilz option:contains(' + 'Databases' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Databases' + ')').prop({selected: true}).change();
 		category_tags = ["BI", "Oracle", "DBA"];
 	} else if (currentCategory == 'network'){
-		$('#skilz option:contains(' + 'Network' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Network' + ')').prop({selected: true}).change();
 		category_tags = ["devops", "linux", "windows", "azure"];
 	} else if (currentCategory == 'it-sec'){
-		$('#skilz option:contains(' + 'IT Security' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'IT Security' + ')').prop({selected: true}).change();
 		category_tags = ["pentest", "secops"];
 	} else if (currentCategory == 'qa-manual'){
-		$('#skilz option:contains(' + 'QA Manual' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'QA Manual' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'qa-automation'){
-		$('#skilz option:contains(' + 'QA Automation' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'QA Automation' + ')').prop({selected: true}).change();
 		category_tags = ["python","java","javascript"];
 	} else if (currentCategory == 'gamedev'){
-		$('#skilz option:contains(' + 'GameDev' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'GameDev' + ')').prop({selected: true}).change();
 		category_tags = ["unity", "level", "casual"];
 	} else if (currentCategory == 'mobile-dev'){
-		$('#skilz option:contains(' + 'Mobile Development' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Mobile Development' + ')').prop({selected: true}).change();
 		category_tags = ["android", "ios", "xamarin", "flutter"];
 	} else if (currentCategory == 'full-stack'){
-		$('#skilz option:contains(' + 'Full Stack' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Full Stack' + ')').prop({selected: true}).change();
 		category_tags = ["php", "java", "ruby", "javascript"];
 	} else if (currentCategory == 'net'){
-		$('#skilz option:contains(' + 'C#/.NET' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'C#/.NET' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'python'){
-		$('#skilz option:contains(' + 'Python' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Python' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'front-end'){
-		$('#skilz option:contains(' + 'Front End' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Front End' + ')').prop({selected: true}).change();
 		category_tags = ["javascript", "react", "angular", "typescript", "wordpress", "vue"];
 	} else if (currentCategory == 'java'){
-		$('#skilz option:contains(' + 'Java' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Java' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'kotlin'){
-		$('#skilz option:contains(' + 'Kotlin' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Kotlin' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'golang'){
-		$('#skilz option:contains(' + 'Golang' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Golang' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'scala'){
-		$('#skilz option:contains(' + 'Scala' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Scala' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'c++'){
-		$('#skilz option:contains(' + 'C/C++' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'C/C++' + ')').prop({selected: true}).change();
 	} else if (currentCategory == '1C'){
-		$('#skilz option:contains(' + '1c' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + '1c' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'php'){
-		$('#skilz option:contains(' + 'PHP' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'PHP' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'ruby'){
-		$('#skilz option:contains(' + 'Ruby' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Ruby' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'node-js'){
-		$('#skilz option:contains(' + 'Node.JS' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Node.JS' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'crm'){
-		$('#skilz option:contains(' + 'CRM, ERP' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'CRM, ERP' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'blockchain'){
-		$('#skilz option:contains(' + 'Blockchain' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Blockchain' + ')').prop({selected: true}).change();
 		category_tags = ["solidity", "smart"];
 	} else if (currentCategory == 'embedded'){
-		$('#skilz option:contains(' + 'Embedded' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Embedded' + ')').prop({selected: true}).change();
 		category_tags = ["firmware", "voip", "hardware"];
 	} else if (currentCategory == 'data-science'){
-		$('#skilz option:contains(' + 'Data Science' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Data Science' + ')').prop({selected: true}).change();
 		category_tags = ["big", "deep", "ai"];
 				// Management
 	} else if (currentCategory == 'project-management'){
-		$('#skilz option:contains(' + 'Project Management' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Project Management' + ')').prop({selected: true}).change();
 		category_tags = ["delivery", "engineering", "scrum"];
 	} else if (currentCategory == 'product-management'){
-		$('#skilz option:contains(' + 'Product Management' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Product Management' + ')').prop({selected: true}).change();
 		category_tags = ["r&d", "growth", "engineering"];
 	} else if (currentCategory == 'marketing-management'){
-		$('#skilz option:contains(' + 'Marketing Management' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Marketing Management' + ')').prop({selected: true}).change();
 		category_tags = ["affiliate", "google", "leads"];
 				// Design
 	} else if (currentCategory == 'web-design'){
-		$('#skilz option:contains(' + 'Web Design' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Web Design' + ')').prop({selected: true}).change();
 		category_tags = ["верстка", "css"];
 	} else if (currentCategory == 'ui-ux'){
-		$('#skilz option:contains(' + 'UI/UX' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'UI/UX' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'graphic-design'){
-		$('#skilz option:contains(' + 'Graphic Design' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Graphic Design' + ')').prop({selected: true}).change();
 		category_tags = ["2d", "character", "иллюстратор"];
 	} else if (currentCategory == '3d-design'){
-		$('#skilz option:contains(' + '3D Design' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + '3D Design' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'motion-design'){
-		$('#skilz option:contains(' + 'Motion Design' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Motion Design' + ')').prop({selected: true}).change();
 				// Miscellaneous
 	} else if (currentCategory == 'hr'){
-		$('#skilz option:contains(' + 'HR' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'HR' + ')').prop({selected: true}).change();
 		category_tags = ["recruiter", "скаут", "серчер", "staff"];
 	} else if (currentCategory == 'seo-e-mail'){
-		$('#skilz option:contains(' + 'SEO/E-mail' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'SEO/E-mail' + ')').prop({selected: true}).change();
 		category_tags = ["aso", "link", "email"];
 	} else if (currentCategory == 'ads-lead'){
-		$('#skilz option:contains(' + 'Ads/Lead' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Ads/Lead' + ')').prop({selected: true}).change();
 		category_tags = ["affiliate", "ppc", "google", "таргет", "арбитраж"];
 	} else if (currentCategory == 'smm'){
-		$('#skilz option:contains(' + 'SMM' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'SMM' + ')').prop({selected: true}).change();
 		category_tags = ["instagram", "директ", "media", "контент"];
 	} else if (currentCategory == 'it-sales'){
-		$('#skilz option:contains(' + 'IT-sales' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'IT-sales' + ')').prop({selected: true}).change();
 		category_tags = ["account", "sales"];
 	} else if (currentCategory == 'analyst'){
-		$('#skilz option:contains(' + 'Analyst' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Analyst' + ')').prop({selected: true}).change();
 	} else if (currentCategory == 'support'){
-		$('#skilz option:contains(' + 'Support' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Support' + ')').prop({selected: true}).change();
 		category_tags = ["customer", "helpdesk", "zendesk"];
 	} else if (currentCategory == 'copywriting'){
-		$('#skilz option:contains(' + 'Copywriting' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Copywriting' + ')').prop({selected: true}).change();
 	} else if (currentCategory === ''){
-		$('#skilz option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
 		currentCategory = 'anything';
 	} else if (currentCategory.includes('fbclid')){
-		$('#skilz option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Все вакансии' + ')').prop({selected: true}).change();
 		currentCategory = 'anything';
 	} else if (currentCategory == 'favorite'){
-		$('#skilz option:contains(' + 'Избранное' + ')').prop({selected: true}).change();
+		$('#select_category option:contains(' + 'Избранное' + ')').prop({selected: true}).change();
 		if (favorites !== null) {
 	        currentCategory = favorites.join(" ");
 		}
@@ -238,7 +238,7 @@ $(function firstData() {
 		var current_exp = 69
 	}
 	    
-	document.querySelectorAll('[id=page]').forEach((element)=> {
+	document.querySelectorAll('[id=exp_button]').forEach((element)=> {
 		if (parseInt(element.getAttribute('value')) === current_exp){
 			element.classList.add('active');
 		}

@@ -9,10 +9,9 @@
 	<script type=text/javascript src="{{ url_for('static', filename='first_data.js', v='16.74') }}"></script>
 	<link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 	<title>Удалёнка — Поиск удалённой работы</title>
-    <meta name="facebook-domain-verification" content="y4h3zi1u859tx2p31zzwcj07qssue2" />
   </head>
 
-  <body style="margin:0;"  ontouchstart="" >
+  <body>
 	<header>
 		<div class="header_overlay">
 			<h1 class="header_title" onclick="window.location.href = '/'"><img src="{{ url_for('static', filename='logo.svg') }}" class="header_title_logo">Удалёнка (Beta)</h1>
@@ -30,10 +29,9 @@
 				</ul>
 			  </div>
 			</nav>
-
 			
-			<form  class="header_form">
-				<select id="skilz" class="js-example-basic-multiple" name="skills" style="width:200px">
+			<form id="select_category" class="header_form">
+				<select class="js-example-basic-multiple">
 				<option>Все вакансии</option>
 				<option>Избранное</option>
 				<option>HR</option>
@@ -87,7 +85,7 @@
 		</div>
 	</header>
 	
-	<button class="accordion" style="top: 0; display: block; border: 0; padding-bottom: 2px; padding-top: 7px; margin-top:3px; margin-bottom:3px;">
+	<button class="accordion" style="">
     	<div id="filters" class="accordion_head" onclick="filters(this)">
     		<div class="accordion_head_info" style="width:100%">
     			<span id="filter_label" class="accordion_head_info_position" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-family:'MontBold'; display:inline;">Фильтр▾</span>
@@ -96,13 +94,13 @@
     	</div>
     	<div class="panel">
     		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Опыт работы:</p>
-    		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
-    			<a id="page" class="page" onclick="set_experience(this)" value="69" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">Все</a>
-    			<a id="page" class="page" onclick="set_experience(this)" value="1" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">1 год</a>
-    			<a id="page" class="page" onclick="set_experience(this)" value="2" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">2 года</a>
-    			<a id="page" class="page" onclick="set_experience(this)" value="3" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">3 года</a>
-    			<a id="page" class="page" onclick="set_experience(this)" value="4" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">4 года</a>
-    			<a id="page" class="page" onclick="set_experience(this)" value="10" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">5 лет и больше</a>
+    		<div class="pagination" style="">
+    			<a id="exp_button" onclick="set_experience(this)" value="69">Все</a>
+    			<a id="exp_button" onclick="set_experience(this)" value="1">1 год</a>
+    			<a id="exp_button" onclick="set_experience(this)" value="2">2 года</a>
+    			<a id="exp_button" onclick="set_experience(this)" value="3">3 года</a>
+    			<a id="exp_button" onclick="set_experience(this)" value="4">4 года</a>
+    			<a id="exp_button" onclick="set_experience(this)" value="10">5 лет и больше</a>
     		</div>
     		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Источники:</p>
     		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
