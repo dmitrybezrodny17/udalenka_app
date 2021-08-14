@@ -1,4 +1,4 @@
-parser/modules/credentials.py
-website/credentials.py
 parser/modules/config.py
 website/config.py
+website/__pycache__/
+parser/__pycache__/
