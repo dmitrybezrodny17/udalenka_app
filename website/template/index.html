@@ -97,12 +97,12 @@
     	<div class="panel">
     		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Опыт работы:</p>
     		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
-    			<a id="page" class="page" onclick="expir(this)" value="69" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">Все</a>
-    			<a id="page" class="page" onclick="expir(this)" value="1" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">1 год</a>
-    			<a id="page" class="page" onclick="expir(this)" value="2" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">2 года</a>
-    			<a id="page" class="page" onclick="expir(this)" value="3" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">3 года</a>
-    			<a id="page" class="page" onclick="expir(this)" value="4" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">4 года</a>
-    			<a id="page" class="page" onclick="expir(this)" value="10" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">5 лет и больше</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="69" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">Все</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="1" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">1 год</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="2" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">2 года</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="3" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">3 года</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="4" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">4 года</a>
+    			<a id="page" class="page" onclick="set_experience(this)" value="10" style="margin: 0 5px 5px 0; border: 1px solid #D1D1D1; border-radius: 5px; padding: 5px;">5 лет и больше</a>
     		</div>
     		<p style="margin: 5px 0px 0px 0px; font-size:14px; font-family:'Mont';">Источники:</p>
     		<div class="pagination" style="margin: 5px 10px 5px 0px; justify-content: left; font-size:14px; font-family:'Mont'; flex-wrap: wrap;">
@@ -156,94 +156,7 @@
 		}
 	</script>
 	
-	<script>
-		function tags(e) {
-			var tag = e.innerText;
-			var list = [];
-			var tags = JSON.parse(localStorage.getItem("tags"));
-			for (i in tags) {
-				list.push(tags[i]);
-			}
-				
-			if (tags != null){
-				if (!tags.includes(tag)){
-					e.classList.add('active_tags');
-					list.push(tag);
-				} else {
-					const index = list.indexOf(tag);
-					list.splice(index, 1);
-					e.classList.remove('active_tags');
-				}
-							
-				} else {
-					list.push(tag);
-					e.classList.add('active_tags');
-				}
-						
-				localStorage.setItem('tags', JSON.stringify(list));
-		}
-	</script>	
 	
-	<script>
-		function favorite(e) {
-			var category = window.location.href.split('/')[3].split('#')[0];
-			var list = []
-			var favorites = JSON.parse(localStorage.getItem("favorites"));
-			for (i in favorites) {
-				list.push(favorites[i]);
-			}
-				
-			if (favorites != null){
-				if (!favorites.includes(category)){
-					e.textContent = '★';
-	        	    document.querySelector('#fav_label').style = "margin:5px 0px 0px 5px; font-size:14px; font-family:'Mont'";
-		            document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 10px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
-	        	    //document.querySelector('#empty_favs').style = "visibility: hidden"
-					list.push(category);
-					console.log(list)
-					var fav_template = document.querySelector('#fav_template');
-					var fav_list = document.querySelector("#fav_list");
-					let fav_clone = fav_template.content.cloneNode(true);
-					fav_clone.querySelector('#fav').setAttribute("href", "/" + category);
-					fav_clone.querySelector('#fav').textContent = category;
-					fav_list.appendChild(fav_clone);
-				} else {
-					const index = list.indexOf(category);
-					list.splice(index, 1);
-					console.log(list)
-					e.textContent = '☆';
-	        	    // document.querySelector('#empty_favs').style = "visibility: visible; margin:0; margin-left:5px"
-					var created_favs = document.getElementsByClassName("fav");
-					for (var i = 0; i < created_favs.length; i++) {
-						if (created_favs[i].textContent == category) {
-							created_favs[i].remove();
-						}
-					}
-					console.log(list.length);
-					if (list.length == 0) {
-		                document.querySelector('#fav_label').style = "visibility: hidden; margin:0; height:0;";
-		                document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:0; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
-					}
-				}
-							
-				} else {
-					e.textContent = '★';
-	        	    document.querySelector('#fav_label').style = "margin:5px 0px 0px 5px; font-size:14px; font-family:'Mont'";
-		            document.querySelector('#fav_list').style = "display:flex; align-items:center; margin:5px 10px 10px 0px; justify-content:left; font-size:14px; font-family:'Mont'; flex-wrap: wrap";
-					list.push(category);
-					console.log(list)
-					var fav_template = document.querySelector('#fav_template');
-					var fav_list = document.querySelector("#fav_list");
-					let fav_clone = fav_template.content.cloneNode(true);
-					fav_clone.querySelector('#fav').setAttribute("href", "/" + category);
-					fav_clone.querySelector('#fav').textContent = category;
-					fav_list.appendChild(fav_clone);
-				}
-						
-				localStorage.setItem('favorites', JSON.stringify(list));
-		}
-	</script>	
-			
 	<script>
 		function source(e) {
 			var website = e.innerText;
@@ -272,19 +185,6 @@
 		}
 	</script>	
 			
-	<script>
-		function expir(e) {
-			if (!$(event.target).hasClass('button')){
-				document.querySelectorAll('[id=page]').forEach((element)=> {
-					element.classList.remove('active');
-				});
-				var current_exp = JSON.parse(localStorage.getItem("exp"));
-				e.classList.add('active');
-				localStorage.setItem('exp', e.getAttribute('value'));
-			}
-		}
-	</script>
-	
 	<button id="news" class="accordion" style="top: 0; display: block;">
 		<div id="job_id" class="accordion_head" style="justify-content: center">
 			<p id="new_posts" style="font-family: 'MontBold';"></p><p value="14" id="old_posts"></p>
@@ -380,87 +280,7 @@
 		}
 	</script>
 
-	<script>
-	 function accordion(e) {
-			if (!$(event.target).hasClass('button') && !$(event.target).hasClass('favorite')){
-			
-				var post = $(e.querySelector('.accordion_head'));
-				var job_id = post.attr('id');
-				var list = []
-				var viewed = JSON.parse(localStorage.getItem("viewed"));
-				for (i in viewed) {
-						list.push(viewed[i]);
-					}
-				
-				if (viewed != null){
-					if (!viewed.includes(job_id)){
-						e.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
-						e.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
-						e.querySelector("#date").style = "color: #D3D3D3;margin: 0px;line-height:16px;position:absolute;bottom:0;right:0;text-align:right;";
-					    //e.querySelector("#salary").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:170px;";
-						list.push(job_id);
-					}
-				} else {
-					e.querySelector("#title").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
-					e.querySelector("#company").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;margin: 0px;line-height:16px;";
-					e.querySelector("#date").style = "color: #D3D3D3;margin: 0px;line-height:16px;position:absolute;bottom:0;right:0;text-align:right;";
-					//e.querySelector("#salary").style = "color: #D3D3D3;overflow: hidden; white-space: nowrap; text-overflow: ellipsis; line-height:16px;max-width:170px;";
-					list.push(job_id);
-				}
-				
-				localStorage.setItem('viewed', JSON.stringify(list));
-				var localValue = localStorage.getItem('viewed');
-				
-				var panel = e.querySelector('.panel');
-				if (panel.style.maxHeight) {
-				  panel.style.maxHeight = null;
-				  panel.style.backgroundColor = "white";
-				  e.style.backgroundColor = "white";
-				 /* e.scrollIntoView({behavior: 'smooth'});*/
-				  if (e.getBoundingClientRect().top < 0) {
-					window.scroll({top: findPos(e), behavior: 'smooth'});
-					function findPos(obj) {
-						var curtop = 0;
-						if (obj.offsetParent) {
-							do {
-								curtop += obj.offsetTop;
-							} while (obj = obj.offsetParent);
-						return [curtop];
-						}
-					}
-				  }
-				} else {
-    				panel.style.maxHeight = panel.scrollHeight + "px";
-    				panel.style.backgroundColor = "#fff";
-    				e.style.backgroundColor = "#fff";
-    			    e.classList.add('active');
-			} 
-		  }
-		}
-	</script>
-
 	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="/static/top.png" width="50" height="50" alt="submit"></button>
-
-	<script>
-	mybutton = document.getElementById("myBtn");
-	myimage = document.getElementById("myImg");
-	window.onscroll = function() {scrollFunction()};
-
-	function scrollFunction() {
-	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-		mybutton.style.display = "block";
-		myimage.style.display = "block";
-	  } else {
-		mybutton.style.display = "none";
-		myimage.style.display = "none";
-	  }
-	}
-
-	function topFunction() {
-	  document.body.scrollTop = 0;
-	  document.documentElement.scrollTop = 0;
-	}
-	</script>
 
   </body>
 </html>

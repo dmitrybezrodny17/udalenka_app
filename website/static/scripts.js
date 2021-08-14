@@ -29,7 +29,6 @@ function set_experience(e) {
 		var current_exp = JSON.parse(localStorage.getItem("exp"));
 		e.classList.add('active');
 		localStorage.setItem('exp', e.getAttribute('value'));
-		location.reload();
 		}
 };
 
