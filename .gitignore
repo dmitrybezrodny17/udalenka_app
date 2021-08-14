@@ -1,2 +1,4 @@
 parser/modules/credentials.py
 website/credentials.py
+parser/modules/config.py
+website/config.py
