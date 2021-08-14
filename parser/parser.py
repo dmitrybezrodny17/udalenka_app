@@ -1,7 +1,7 @@
-from modules.scrapers import djinni, rabota, work, grc, dou
+from modules.scrapers import djinni, rabota, work, grc, dou, jooble
 
 def main():
-	dou.get_urls()
+	jooble.get_urls()
 
 if __name__ == '__main__':
 	main()
