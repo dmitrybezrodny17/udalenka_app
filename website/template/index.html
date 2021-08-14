@@ -134,57 +134,7 @@
     	</div>
 	</button>
 	
-	<script>
-		function enter() {
-			var category = window.location.href.split('/')[3].split('#')[0];
-			var salary = document.querySelector('#salary').value;
-			localStorage.setItem('salary', JSON.stringify(salary));
-			window.location = '/' + category;
-		}
-	</script>	
 	
-	<script>
-		function zp() {
-			if (document.getElementById('zp').checked) {
-				nullzp = 1;
-				document.getElementById("zp").checked = true;
-			} else {
-				nullzp = 0;
-				document.getElementById("zp").checked = false;
-			}
-			localStorage.setItem('nullzp', JSON.stringify(nullzp));
-		}
-	</script>
-	
-	
-	<script>
-		function source(e) {
-			var website = e.innerText;
-			var list = [];
-			var source_list = JSON.parse(localStorage.getItem("source"));
-			for (i in source_list) {
-				list.push(source_list[i]);
-			}
-				
-			if (source_list != null){
-				if (!source_list.includes(website)){
-					e.classList.add('active_sources');
-					list.push(website);
-				} else {
-					const index = list.indexOf(website);
-					list.splice(index, 1);
-					e.classList.remove('active_sources');
-				}
-							
-				} else {
-					list.push(website);
-					e.classList.add('active_sources');
-				}
-						
-				localStorage.setItem('source', JSON.stringify(list));
-		}
-	</script>	
-			
 	<button id="news" class="accordion" style="top: 0; display: block;">
 		<div id="job_id" class="accordion_head" style="justify-content: center">
 			<p id="new_posts" style="font-family: 'MontBold';"></p><p value="14" id="old_posts"></p>
@@ -244,41 +194,6 @@
 	<div id="sentinel" style="height:10px"></div>
 	<div class="loader" id="loader"></div>
 
-	<script>
-	 function filters(e) {
-				var panel = e.parentNode.querySelector('.panel');
-				if (panel.style.maxHeight) {
-				  panel.style.maxHeight = null;
-				  panel.style.backgroundColor = "white";
-				  e.parentNode.style.backgroundColor = "white";
-				  e.parentNode.classList.remove('active');
-				  localStorage.setItem('isfilteropen', 0)
-				} else {
-				  panel.style.maxHeight = panel.scrollHeight + "px";
-				  panel.style.backgroundColor = "#fff";
-				  e.parentNode.style.backgroundColor = "#fff";
-				  e.parentNode.classList.add('active');
-				  localStorage.setItem('isfilteropen', 1)
-				} 
-		  }
-	</script>
-	
-	<script>
-	 function acc(e) {
-			var panel = e.querySelector('.panel');
-				if (panel.style.maxHeight) {
-				  panel.style.maxHeight = null;
-				  panel.style.backgroundColor = "white";
-				  e.style.backgroundColor = "white";
-				  e.classList.remove('active');
-				} else {
-				  panel.style.maxHeight = panel.scrollHeight + "px";
-				  panel.style.backgroundColor = "#fff";
-				  e.style.backgroundColor = "#fff";
-				  e.classList.add('active');
-			} 
-		}
-	</script>
 
 	<button onclick="topFunction()" id="myBtn" style="border: 0px; background: transparent; display: block;"><img id="myImg" style="display: none;" src="/static/top.png" width="50" height="50" alt="submit"></button>
 

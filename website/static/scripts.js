@@ -1,3 +1,62 @@
+function filters(e) {
+	var panel = e.parentNode.querySelector('.panel');
+	if (panel.style.maxHeight) {
+		panel.style.maxHeight = null;
+		panel.style.backgroundColor = "white";
+		e.parentNode.style.backgroundColor = "white";
+		e.parentNode.classList.remove('active');
+		localStorage.setItem('isfilteropen', 0)
+	} else {
+		panel.style.maxHeight = panel.scrollHeight + "px";
+		panel.style.backgroundColor = "#fff";
+		e.parentNode.style.backgroundColor = "#fff";
+		e.parentNode.classList.add('active');
+		localStorage.setItem('isfilteropen', 1)
+		} 
+}
+
+function source(e) {
+	var website = e.innerText;
+	var list = [];
+	var source_list = JSON.parse(localStorage.getItem("source"));
+	for (i in source_list) {
+		list.push(source_list[i]);
+	}
+		
+	if (source_list != null){
+		if (!source_list.includes(website)){
+			e.classList.add('active_sources');
+			list.push(website);
+		} else {
+			const index = list.indexOf(website);
+			list.splice(index, 1);
+			e.classList.remove('active_sources');
+		}
+	} else {
+		list.push(website);
+		e.classList.add('active_sources');
+	}
+	localStorage.setItem('source', JSON.stringify(list));
+}
+
+function zp() {
+	if (document.getElementById('zp').checked) {
+		nullzp = 1;
+		document.getElementById("zp").checked = true;
+	} else {
+		nullzp = 0;
+		document.getElementById("zp").checked = false;
+	}
+	localStorage.setItem('nullzp', JSON.stringify(nullzp));
+}
+
+function enter() {
+	var category = window.location.href.split('/')[3].split('#')[0];
+	var salary = document.querySelector('#salary').value;
+	localStorage.setItem('salary', JSON.stringify(salary));
+	window.location = '/' + category;
+}
+		
 function tags(e) {
 	var tag = e.innerText;
 	var list = [];
