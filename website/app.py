@@ -2,7 +2,7 @@ import psycopg2
 from flask import Flask, render_template, request, jsonify, Markup
 import re
 import math
-import credentials as c
+import config as c
 from modules.categorization import *
 
 app = Flask(__name__, template_folder='template')

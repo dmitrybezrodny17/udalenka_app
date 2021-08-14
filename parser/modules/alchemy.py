@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import modules.credentials as c
+import modules.config as c
 
 engine = create_engine(c.ENGINE, echo=False)
 Base = declarative_base()
