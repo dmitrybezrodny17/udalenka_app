@@ -7,8 +7,6 @@ from modules.categorization import *
 from modules.search import *
 
 app = Flask(__name__, template_folder='template')
-
-
 	
 @app.route("/")
 def home():
@@ -31,12 +29,11 @@ def category(category):
 
 @app.route('/_search')
 def get():
-	search_terms = request.args.get('skill')
-	tag_list = request.args.get('tags')
-	salary = request.args.get('salary')
-	nullzp = int(request.args.get('nullzp'))
-	sources = request.args.get('sources')
-	print(sources)
+	search_terms = request.args['skill']
+	tag_list = request.args['tags']
+	salary = request.args['salary']
+	nullzp = int(request.args['nullzp'])
+	sources = request.args['sources']
 	if salary is not None and salary is not '':
 		salary = int(salary.replace(',','').replace('.',''))
 	else:
