@@ -4,74 +4,11 @@ import re
 import math
 import config as c
 from modules.categorization import *
+from modules.search import *
 
 app = Flask(__name__, template_folder='template')
 
-def search(search_terms, exp_in, tag_list, salary_in, nullzp, sources, sort_by):
-	conn = psycopg2.connect(dbname=c.DBNAME, user=c.USER, 
-					   password=c.PASSWORD, host=c.HOST)
-	cur = conn.cursor()
-	cur.execute("SELECT url, title, company, salary, description, date, img, id, exp, links from jop2")
-	rows = cur.fetchall()
-	conn.commit() 
-	conn.close()
-	job_list = []
-	match = 0
-	for row in rows:
-		url = row[0]
-		title = row[1]
-		company = row[2]
-		salary = int(row[3])
-		description = Markup(row[4])
-		date = row[5]
-		img = row[6]
-		job_id = row[7]
-		exp = row[8]
-		links = row[9]
-		if links == '' or links == ' ' or links is None:
-			links = url
-		tl = title.lower()
-		for term in search_terms.split(' '):
-			match = detect_category(term, title)
-		job = (url, title, company, salary, description, date, match, img, job_id, exp, links)
-		if exp is None:
-			exp = 0
-		if nullzp == 1:
-			if match > 0 and exp_in >= exp and (salary_in <= salary or salary == 0):
-				if tag_list == "anything":
-					if any(x in url for x in sources.split(' ')) or any(x in links for x in sources.split(' ')):
-						job_list.append(job)
-					else:
-						pass
-				else:
-					for i in tag_list.split(' '):
-						if i in title.lower() or i in description:
-							if any(x in url for x in sources.split(' ')) or any(x in links for x in sources.split(' ')):
-								job_list.append(job)
-							else:
-								pass
-						else:
-							pass
-			else:
-				pass
-		else:
-			if match > 0 and exp_in >= exp and (salary_in <= salary and salary != 0):
-				if tag_list == "anything":
-					job_list.append(job)
-				else:
-					for i in tag_list.split(' '):
-						if i in title.lower() or i in description:
-							if any(x in url for x in sources.split(' ')) or any(x in links for x in sources.split(' ')):
-								job_list.append(job)
-							else:
-								pass
-						else:
-							pass
-			else:
-				pass
-		match = 0
-	sorted_job_list = sorted(job_list, key=lambda x: x[5], reverse=True)
-	return(sorted_job_list)
+
 	
 @app.route("/")
 def home():
