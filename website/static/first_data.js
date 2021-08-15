@@ -323,11 +323,9 @@ $(function firstData() {
                 btn.style = "text-align:center;"
                 document.body.appendChild(btn);
     		}
-    		console.log(data.list_count);
 	        document.querySelector('#loader').visibility = 'visible';
 		    document.querySelector('#old_posts').setAttribute("value", data.list_count);
 		    for (var i = 0; i < data.result.length; i++) {
-				console.log(data.result[i]);
     			if (data.result[i][6] > 0){
 	    			let template_clone = template.content.cloneNode(true);
 				
