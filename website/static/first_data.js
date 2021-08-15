@@ -327,6 +327,7 @@ $(function firstData() {
 	        document.querySelector('#loader').visibility = 'visible';
 		    document.querySelector('#old_posts').setAttribute("value", data.list_count);
 		    for (var i = 0; i < data.result.length; i++) {
+				console.log(data.result[i]);
     			if (data.result[i][6] > 0){
 	    			let template_clone = template.content.cloneNode(true);
 				
@@ -396,18 +397,7 @@ $(function firstData() {
     					template_clone.querySelector("#date").textContent = "На прошлой неделе";
     				} 
 					
-    			    if (data.result[i][10].includes(",")) {
-    			        var links = data.result[i][10].split(",");
-    			        for (x in links) {
-    			            for (y in source_list) {
-        			            if (links[x].includes(source_list[y]) && !(data.result[i][0].includes(source_list[y]))) {
-        			                template_clone.querySelector("#"+CSS.escape(source_list[y])).style = "margin-top:5px;";
-        			                template_clone.querySelector("#"+CSS.escape(source_list[y])).textContent = "Смотреть на " + source_list[y];
-        			            	template_clone.querySelector("#"+CSS.escape(source_list[y])).setAttribute("onClick", "window.open('" + links[x] + "')");
-        			            }
-    			            }
-    			        }
-    		    	}
+    			   
     			    scroller.appendChild(template_clone);
     			    if (data.result.length < 20) {
             		    document.querySelector('#loader').remove();

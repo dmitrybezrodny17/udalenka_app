@@ -2,7 +2,7 @@ import psycopg2
 from flask import Flask, render_template, request, jsonify, Markup
 import re
 import math
-import config as c
+import modules.config as c
 from modules.categorization import *
 from modules.search import *
 
@@ -34,18 +34,20 @@ def get():
 	salary = request.args['salary']
 	nullzp = int(request.args['nullzp'])
 	sources = request.args['sources']
+	page = int(request.args['page'])
+	exp_in = int(request.args['exp'])
 	if salary is not None and salary is not '':
 		salary = int(salary.replace(',','').replace('.',''))
 	else:
 		salary = 0
-	if tag_list is not None:
+	if tag_list is not None and tag_list is not '':
 		tag_list = tag_list.rstrip()
 	else:
 		tag_list = "anything"
-	page = int(request.args.get('page'))
-	exp_in = int(request.args.get('exp'))
-	search_string = ' '.join(search_terms)
 	job_list = search(search_terms, exp_in, tag_list, salary, nullzp, sources, "1")
+	#print(job_list[page*20-20:page*20][0])
+	#print(math.ceil(len(job_list)/20))
+	#print(len(job_list))
 	return jsonify(result=job_list[page*20-20:page*20], page_count=math.ceil(len(job_list)/20), list_count=len(job_list))
 	
 @app.errorhandler(404)
