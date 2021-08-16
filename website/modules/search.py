@@ -2,8 +2,8 @@ from flask import Markup
 import psycopg2
 import modules.config as c
 from modules.categorization import *
+from sqlalchemy import Column, Integer, String, create_engine, or_, and_, any_
 
-from sqlalchemy import Column, Integer, String, create_engine, or_, and_
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -28,21 +28,19 @@ class Jobs(Base):
 def search(search_terms, exp_in, tag_list, salary_in, nullzp, sources, sort_by):
 	jobs = s.query(Jobs.url, Jobs.title, Jobs.company, Jobs.salary, Jobs.description, Jobs.img, Jobs.date, Jobs.id, Jobs.exp, Jobs.links).all()
 	job_list = []
-
 	if nullzp == 1:
-		for row in s.query(Jobs).filter(or_(Jobs.salary >= salary_in, Jobs.salary == 0)).filter(Jobs.exp <= exp_in).order_by('date'):
-			match = detect_category(search_terms, row.title)
-			if match > 0:
-				print(row.title)
-				job_list.append([row.url, row.title, row.company, int(row.salary), Markup(row.description), row.date, match, row.img, row.id, row.exp, row.links])
+		q = s.query(Jobs).filter(or_(Jobs.salary >= salary_in, Jobs.salary == 0)).filter(Jobs.exp <= exp_in).filter(Jobs.url.like(any_(sources))).order_by('date').all()
 	else:
-		for row in s.query(Jobs).filter(and_(Jobs.salary >= salary_in, Jobs.salary != 0)).filter(Jobs.exp <= exp_in).order_by('date'):
-			match = detect_category(search_terms, row.title)
-			if match > 0:
-				print(row.title)
+		q = s.query(Jobs).filter(and_(Jobs.salary >= salary_in, Jobs.salary != 0)).filter(Jobs.exp <= exp_in).filter(Jobs.url.like(any_(sources))).order_by('date').all()
+	
+	for row in q:
+		match = detect_category(search_terms, row.title)
+		if match > 0:
+			if tag_list != "anything":
+				if any(tag in (row.title.lower() + row.description.lower()) for tag in tag_list.split(' ')):
+					job_list.append([row.url, row.title, row.company, int(row.salary), Markup(row.description), row.date, match, row.img, row.id, row.exp, row.links])
+			else:
 				job_list.append([row.url, row.title, row.company, int(row.salary), Markup(row.description), row.date, match, row.img, row.id, row.exp, row.links])
-
-
-		
+				
 	sorted_job_list = sorted(job_list, key=lambda x: x[5], reverse=True)
 	return(sorted_job_list)

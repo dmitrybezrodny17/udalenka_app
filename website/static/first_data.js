@@ -278,7 +278,6 @@ $(function firstData() {
 	    document.querySelectorAll('[id=title]')[0].textContent = 'Фильтр (1)▾';
 	}*/
 		
-		
 	var intervalID = window.setInterval(CheckNews, 1000*60);
 
 	function CheckNews() {
@@ -289,7 +288,7 @@ $(function firstData() {
 			tags: tag_list,
 			salary: salary,
 			nullzp: nullzp,
-			sources: sources.join(' ')
+			sources: sources.join(',')
 		}, function(data) {
 			var new_posts = data.list_count;	
 			var old_posts = document.querySelector('#old_posts').getAttribute('value');
@@ -310,7 +309,7 @@ $(function firstData() {
 			tags: tag_list,
 			salary: salary,
 			nullzp: nullzp,
-			sources: sources.join(' ')
+			sources: sources.join(',')
 	    }, function(data) {
     		if (data.result.length == 0) {
     		    document.querySelector('#loader').remove();

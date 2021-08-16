@@ -33,7 +33,7 @@ def get():
 	tag_list = request.args['tags']
 	salary = request.args['salary']
 	nullzp = int(request.args['nullzp'])
-	sources = request.args['sources']
+	sources = ['%{}%'.format(source) for source in request.args.get('sources').split(',')]
 	page = int(request.args['page'])
 	exp_in = int(request.args['exp'])
 	if salary is not None and salary is not '':
