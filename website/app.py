@@ -45,10 +45,7 @@ def get():
 	else:
 		tag_list = "anything"
 	job_list = search(search_terms, exp_in, tag_list, salary, nullzp, sources, "1")
-	#print(job_list[page*20-20:page*20][0])
-	#print(math.ceil(len(job_list)/20))
-	#print(len(job_list))
-	return jsonify(result=job_list[page*20-20:page*20], page_count=math.ceil(len(job_list)/20), list_count=len(job_list))
+	return jsonify(result=job_list[page*20-20:page*20], list_count=len(job_list))
 	
 @app.errorhandler(404)
 def not_found_error(error):
