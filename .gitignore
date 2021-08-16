@@ -1,5 +1,5 @@
 parser/modules/config.py
-website/config.py
+website/modules/config.py
 website/__pycache__/
 parser/__pycache__/
 website/modules/__pycache__/
