@@ -325,7 +325,9 @@ $(function firstData() {
     		}
 	        document.querySelector('#loader').visibility = 'visible';
 		    document.querySelector('#old_posts').setAttribute("value", data.list_count);
-		    for (var i = 0; i < data.result.length; i++) {
+		    for (var i = 0; i < data.result.length; i++) { 
+				console.log(data.list_count);
+				console.log(data.result[i][1]);
     			if (data.result[i][6] > 0){
 	    			let template_clone = template.content.cloneNode(true);
 				
@@ -397,15 +399,16 @@ $(function firstData() {
 					
     			   
     			    scroller.appendChild(template_clone);
-    			    if (data.result.length < 20) {
-            		    document.querySelector('#loader').remove();
-            		    var btn = document.createElement("DIV"); 
-            		    btn.innerHTML = "<br><br>Вакансий больше нет :(<br><br><br><br><br><br><br><br>";
-                        btn.style = "text-align:center;"
-                        document.body.appendChild(btn);
-    			    }
     			}
     		}
+
+			if (data.result.length < 20) {
+				document.querySelector('#loader').remove();
+				var btn = document.createElement("DIV"); 
+				btn.innerHTML = "<br><br>Вакансий больше нет :(<br><br><br><br><br><br><br><br>";
+				btn.style = "text-align:center;"
+				document.body.appendChild(btn);
+			}			
         	if (JSON.parse(localStorage.getItem("isfilteropen")) !== null) {
         	    var panel = document.getElementById("filters").parentNode.querySelector('.panel');	
         	    if (parseInt(JSON.parse(localStorage.getItem("isfilteropen"))) == 1) {
