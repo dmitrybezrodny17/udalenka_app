@@ -27,25 +27,29 @@ def category(category):
 	else:
 		return render_template("404.html")
 
-@app.route('/_search')
+@app.route('/_search', methods=['GET', 'POST'])
 def get():
-	search_terms = request.args['skill']
-	tag_list = request.args['tags']
-	salary = request.args['salary']
-	nullzp = int(request.args['nullzp'])
-	sources = ['%{}%'.format(source) for source in request.args.get('sources').split(',')]
-	page = int(request.args['page'])
-	exp_in = int(request.args['exp'])
-	if salary is not None and salary is not '':
-		salary = int(salary.replace(',','').replace('.',''))
+	if request.method == 'POST':
+		search_terms = request.args['skill']
+		tag_list = request.args['tags']
+		salary = request.args['salary']
+		nullzp = int(request.args['nullzp'])
+		sources = ['%{}%'.format(source) for source in request.args.get('sources').split(',')]
+		page = int(request.args['page'])
+		exp_in = int(request.args['exp'])
+		if salary is not None and salary is not '':
+			salary = int(salary.replace(',','').replace('.',''))
+		else:
+			salary = 0
+		if tag_list is not None and tag_list is not '':
+			tag_list = tag_list.rstrip()
+		else:
+			tag_list = "anything"
+		job_list = search(search_terms, exp_in, tag_list, salary, nullzp, sources, "1")
+		return jsonify(result=job_list[page*20-20:page*20], list_count=len(job_list))
 	else:
-		salary = 0
-	if tag_list is not None and tag_list is not '':
-		tag_list = tag_list.rstrip()
-	else:
-		tag_list = "anything"
-	job_list = search(search_terms, exp_in, tag_list, salary, nullzp, sources, "1")
-	return jsonify(result=job_list[page*20-20:page*20], list_count=len(job_list))
+		pass
+	
 	
 @app.errorhandler(404)
 def not_found_error(error):
