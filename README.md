@@ -11,4 +11,4 @@ TODO:
 - покрыть тестами
 - добавить статистику
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot_desktop.png)
