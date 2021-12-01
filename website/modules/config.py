@@ -1,12 +1,7 @@
-#DBNAME = 'h44940c_udalenka'
-#USER = 'h44940c_admin'
-#PASSWORD = 'xvt192nv2r'
-#HOST = 'localhost'
-
-DBNAME = 'peton'
+DBNAME = ''
 USER = 'postgres'
-PASSWORD = 'xvt192nv2r'
+PASSWORD = ''
 HOST = 'localhost'
 
-ENGINE = 'postgresql://postgres:xvt192nv2r@localhost:5432/peton'
+ENGINE = f'postgresql://{USER}:{PASSWORD}@{HOST}:5432/{DBNAME}'
 TABLE = 'jop2'
