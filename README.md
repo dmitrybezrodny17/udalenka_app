@@ -1,14 +1,12 @@
 https://udalenka.com.ua/
+ 
+UPD: project is temporarily frozen 'cause of job search and stuff
 
-В процессе рефакторинга. 
-UPD: проект временно заморожен ввиду поиска работы и всякого, сайт крутится, лавеха мутится, но код пока не обновляю.
-
-Пока что вакансии категоризируются в момент вывода, а не парсинга, сделано для отладки, в дальнейшем категории будут засунуты в бд.
+Right now jobs are being categorized at search request and not when them scraped. That's due to debugging, in future categories will be in DB.
 
 TODO:
-- откалибровать категоризацию
-- изменить роутинг на сайте
-- покрыть тестами
-- добавить статистику
+- calibrate categorization;
+- add tests;
+- add stats.
 
 ![Screenshot](screenshot_desktop.png)
